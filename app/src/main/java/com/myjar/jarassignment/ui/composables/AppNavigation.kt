@@ -89,6 +89,54 @@ fun ItemCard(item: ComputerItem, onClick: () -> Unit) {
             .clickable { onClick() }
     ) {
         Text(text = item.name, fontWeight = FontWeight.Bold)
+        val itemData = item.data
+        Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.color?.let {it->
+            Text(text="Color: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.capacity?.let {it->
+            Text(text="Capacity: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.price?.let {it->
+            Text(text="Price: $ $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.capacityGB?.let {it->
+            Text(text="CapacityGB: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.screenSize?.let {it->
+            Text(text="ScreenSize: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.description?.let {it->
+            Text(text="Description: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.generation?.let {it->
+            Text(text="Generation: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.strapColour?.let {it->
+            Text(text="StrapColour: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.caseSize?.let {it->
+            Text(text="CaseSize: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.cpuModel?.let {it->
+            Text(text="CpuModel: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        itemData?.hardDiskSize?.let {it->
+            Text(text="HardDiskSize: $it")
+            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        }
+        
+
     }
 }
 
@@ -103,3 +151,4 @@ fun ItemDetailScreen(itemId: String?) {
             .padding(16.dp)
     )
 }
+
