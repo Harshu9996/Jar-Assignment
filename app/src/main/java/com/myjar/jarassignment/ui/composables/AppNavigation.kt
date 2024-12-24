@@ -32,15 +32,14 @@ fun AppNavigation(
     viewModel: JarViewModel,
 ) {
     val navController = rememberNavController()
-    val navigate = remember { mutableStateOf<String>("") }
 
     NavHost(modifier = modifier, navController = navController, startDestination = "item_list") {
         composable("item_list") {
             ItemListScreen(
                 viewModel = viewModel,
-                onNavigateToDetail = { selectedItem -> navigate.value = selectedItem },
-                navigate = navigate,
-                navController = navController
+                onNavigateToDetail = { selectedItem ->
+                    navController.navigate("item_detail/${selectedItem}")
+                }
             )
         }
         composable("item_detail/{itemId}") { backStackEntry ->
@@ -54,17 +53,9 @@ fun AppNavigation(
 fun ItemListScreen(
     viewModel: JarViewModel,
     onNavigateToDetail: (String) -> Unit,
-    navigate: MutableState<String>,
-    navController: NavHostController
 ) {
     val items = viewModel.listStringData.collectAsState()
 
-    if (navigate.value.isNotBlank()) {
-        val currRoute = navController.currentDestination?.route.orEmpty()
-        if (!currRoute.contains("item_detail")) {
-            navController.navigate("item_detail/${navigate.value}")
-        }
-    }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -90,52 +81,100 @@ fun ItemCard(item: ComputerItem, onClick: () -> Unit) {
     ) {
         Text(text = item.name, fontWeight = FontWeight.Bold)
         val itemData = item.data
-        Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
-        itemData?.color?.let {it->
-            Text(text="Color: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(4.dp)
+        )
+        itemData?.color?.let { it ->
+            Text(text = "Color: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.capacity?.let {it->
-            Text(text="Capacity: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.capacity?.let { it ->
+            Text(text = "Capacity: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.price?.let {it->
-            Text(text="Price: $ $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.price?.let { it ->
+            Text(text = "Price: $ $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.capacityGB?.let {it->
-            Text(text="CapacityGB: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.capacityGB?.let { it ->
+            Text(text = "CapacityGB: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.screenSize?.let {it->
-            Text(text="ScreenSize: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.screenSize?.let { it ->
+            Text(text = "ScreenSize: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.description?.let {it->
-            Text(text="Description: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.description?.let { it ->
+            Text(text = "Description: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.generation?.let {it->
-            Text(text="Generation: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.generation?.let { it ->
+            Text(text = "Generation: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.strapColour?.let {it->
-            Text(text="StrapColour: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.strapColour?.let { it ->
+            Text(text = "StrapColour: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.caseSize?.let {it->
-            Text(text="CaseSize: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.caseSize?.let { it ->
+            Text(text = "CaseSize: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.cpuModel?.let {it->
-            Text(text="CpuModel: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.cpuModel?.let { it ->
+            Text(text = "CpuModel: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        itemData?.hardDiskSize?.let {it->
-            Text(text="HardDiskSize: $it")
-            Spacer(modifier = Modifier.fillMaxWidth().height(4.dp))
+        itemData?.hardDiskSize?.let { it ->
+            Text(text = "HardDiskSize: $it")
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+            )
         }
-        
+
 
     }
 }
